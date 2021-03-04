@@ -1,0 +1,142 @@
+./binary.tcl:	# Unused. Use highest bit to enable / disable preinfusion tracking
+./binary.tcl:#   U8P0 NumberOfPreinfuseFrames; // Number of frames that are preinfusion
+./binary.tcl:		set ::settings(current_frame_description) [translate {ending}]
+./binary.tcl:		set ::settings(current_frame_description) [translate {heating}]
+./binary.tcl:				# don't track flow rate delta during preinfusion because the puck is absorbing water, and so the numbers aren't useful (likely just pump variability)
+./binary.tcl:			 		# for FLOW and PRESSURE shots, we normally use preinfusion, so POUR VOLUME is very close to WEIGHT
+./bluetooth.tcl:		# no smoothing when the machine is idle or not pouring/preinfusion 
+./bluetooth.tcl:					# bad idea to tare during preinfusion, problem is there might not be a puck, so we remove the first 5 seconds of weight by doing this.
+./de1_comms.tcl:	# set the water level refill point to 10mm more water
+./de1_comms.tcl:	# then set the water level refill point back to the user setting
+./gui.tcl:				set ::settings(current_frame_description) [translate {pouring}]
+./gui.tcl:				set ::settings(current_frame_description) [translate {preinfusion}]
+./gui.tcl:					# occasionally set the de1 to heating mode
+./gui.tcl:					# occasionally set the de1 to heating mode
+./gui.tcl:					# occasionally set the de1 to heating mode
+./gui.tcl:					# occasionally set the de1 to heating mode
+./gui.tcl:	# preinfusion
+./gui.tcl:	# color coding the preinfusion section
+./gui.tcl:	# preinfusion
+./gui.tcl:	# color coding the preinfusion section
+./gui.tcl:	# if using refill kit don't blink
+./machine.tcl:	# change the substate to ending immediately to provide UI feedback
+./machine.tcl:	#	msg "check refill first before sleep"
+./misc.tcl:        profiles/Gentle\ preinfusion\ flow\ profile.tcl *
+./misc.tcl:        profiles/Innovative\ long\ preinfusion.tcl *
+./misc.tcl:        profiles/e61\ with\ fast\ preinfusion\ to\ 9\ bar.tcl *      
+./plugins/DGUI/DGUI.tcl:Simplify page creation, auto-adapt aspect to current skin/theme, ready-made widget combos and full-page field editors."]
+./plugins/example/plugin.tcl:        msg [namespace current] "registering espresso ending handler"
+./profile.tcl:        set preinfusion [list \
+./profile.tcl:            name [translate {preinfusion}] \
+./profile.tcl:            name [translate {preinfusion}] \
+./profile.tcl:            set temp_advanced(advanced_shot) [list $preinfusion $preinfusion2 $hold $decline]
+./profile.tcl:        set preinfusion [list \
+./profile.tcl:            name [translate {preinfusion}] \
+./profile.tcl:            lappend preinfusion max_flow_or_pressure $::settings(maximum_pressure)
+./profile.tcl:            lappend preinfusion max_flow_or_pressure_range $::settings(maximum_flow_pressure_range)
+./profile.tcl:            name [translate {preinfusion}] \
+./profile.tcl:            set temp_advanced(advanced_shot) [list $preinfusion $preinfusion2 $hold $decline]
+./profile.tcl:            set temp_advanced(advanced_shot) [list $preinfusion $hold $decline]
+./skins/8-BIT/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/8-BIT/skin.tcl:	add_de1_variable "espresso" $column1 [expr {$pos_top + (1 * $spacer)}] -justify left -anchor "nw" -text "" -font $font  -fill $lighter -width [rescale_x_skin 620] -textvariable {[espresso_preinfusion_timer][translate "s"] [translate {preinfusion}]} 
+./skins/8-BIT/skin.tcl:	add_de1_variable "espresso" $column1 [expr {$pos_top + (2 * $spacer)}] -justify left -anchor "nw" -text "" -font $font  -fill $lighter -width [rescale_x_skin 620] -textvariable {[espresso_pour_timer][translate "s"] [translate {pouring}]} 
+./skins/Antibes/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/Aztec/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/Borg/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/Constructivism/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/Croissant/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/Diner/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/Green Cups/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/Insight/skin.tcl:	# not yet ready to be used, still needs some work
+./skins/Insight/skin.tcl:add_de1_text "preheat_2" 1070 250 -text [translate "1) Hot water is pouring out"] -font Helv_9 -fill "#5a5d75" -anchor "nw" -width [rescale_x_skin 650]
+./skins/Insight/skin.tcl:add_de1_text "water" 1070 250 -text [translate "2) Hot water is pouring"] -font Helv_9 -fill "#5a5d75" -anchor "nw" -width [rescale_x_skin 650]
+./skins/MimojaCafe/settings_screen.tcl:add_de1_widget "iconik_settings" checkbutton 160 600 {} -text [translate "Only tare when pouring (usefull for weighing beans)"] -indicatoron true  -font $::font_tiny -bg [theme background] -anchor nw -foreground [theme background_text] -variable ::settings(tare_only_on_espresso_start)  -borderwidth 0 -selectcolor [theme background] -highlightthickness 0 -activebackground [theme background]  -bd 0 -activeforeground [theme background_text] -relief flat -bd 0
+./skins/MimojaCafe/ui.tcl:# water refill
+./skins/Noir/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/Rodent/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/Roman Gods/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/SWDark3/skin.tcl:#add_de1_page "tankempty refill" "fill_tank.png"
+./skins/SWDark3/skin.tcl:#add_de1_page "tankempty refill" "fill_tank.jpg" "default"
+./skins/SWDark3/skin.tcl:#add_de1_button "tankempty refill" {say [translate {awake}] $::settings(sound_button_in);start_refill_kit} 0 0 2560 1400 
+./skins/SWDark3/skin.tcl:#	add_de1_text "tankempty refill" 1280 750 -text [translate "Please add water"] -font Helv_20_bold -fill "#CCCCCC" -justify "center" -anchor "center" -width 900
+./skins/SWDark3/skin.tcl:#	add_de1_variable "tankempty refill" 1280 900 -justify center -anchor "center" -text "" -font Helv_10 -fill "#CCCCCC" -width 520 -textvariable {[refill_kit_retry_button]} 
+./skins/SWDark3/skin.tcl:#	add_de1_button "tankempty refill" {say [translate {awake}] $::settings(sound_button_in);start_refill_kit} 1760 1402 2560 1600
+./skins/SWDark3/skin.tcl:	# not yet ready to be used, still needs some work
+./skins/SWDark3/skin.tcl:	add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (1 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_preinfusion_timer][translate "s"] [translate {preinfusion}]} 
+./skins/SWDark3/skin.tcl:	add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (2 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_pour_timer][translate "s"] [translate {pouring}]} 
+./skins/SWDark3/skin.tcl:	add_de1_variable "espresso espresso_zoomed" $column1_pos [expr {$pos_top_orig + (1 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_preinfusion_timer][translate "s"] [translate {preinfusion}]} 
+./skins/SWDark3/skin.tcl:	add_de1_variable "espresso espresso_zoomed" $column1_pos [expr {$pos_top_orig + (2 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_pour_timer][translate "s"] [translate {pouring}]} 
+./skins/SWDark3/skin.tcl:#disabled these additional decriptors during espresso pouring for elegance
+./skins/SWDark3/skin.tcl:#add_de1_text "preheat_2" 1070 250 -text [translate "1) Hot water is pouring out"] -font Helv_9 -fill "#8b8b8b" -anchor "nw" -width [rescale_x_skin 650]
+./skins/SWDark3/skin.tcl:#add_de1_text "water" 1070 250 -text [translate "2) Hot water is pouring"] -font Helv_9 -fill "#8b8b8b" -anchor "nw" -width [rescale_x_skin 650]
+./skins/SWDark3/skin.tcl:#set_next_page off refill;
+./skins/SWDark4/skin.tcl:#add_de1_page "tankempty refill" "fill_tank.jpg" "default"
+./skins/SWDark4/skin.tcl:#add_de1_text "tankempty refill" 1280 750 -text [translate "Please add water"] -font Helv_20_bold -fill "#AAAAAA" -justify "center" -anchor "center" -width 900
+./skins/SWDark4/skin.tcl:#add_de1_button "tankempty refill" {say [translate {awake}] $::settings(sound_button_in);start_refill_kit} 0 0 2560 1400 
+./skins/SWDark4/skin.tcl:#	add_de1_text "tankempty refill" 1280 750 -text [translate "Please add water"] -font Helv_20_bold -fill "#CCCCCC" -justify "center" -anchor "center" -width 900
+./skins/SWDark4/skin.tcl:#	add_de1_variable "tankempty refill" 1280 900 -justify center -anchor "center" -text "" -font Helv_10 -fill "#CCCCCC" -width 520 -textvariable {[refill_kit_retry_button]} 
+./skins/SWDark4/skin.tcl:#	add_de1_button "tankempty refill" {say [translate {awake}] $::settings(sound_button_in);start_refill_kit} 1760 1402 2560 1600
+./skins/SWDark4/skin.tcl:	# not yet ready to be used, still needs some work
+./skins/SWDark4/skin.tcl:# 3 equal sized charts for espresso pouring
+./skins/SWDark4/skin.tcl:	add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (1 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_preinfusion_timer][translate "s"] [translate {preinfusion}]} 
+./skins/SWDark4/skin.tcl:	add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (2 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_pour_timer][translate "s"] [translate {pouring}]} 
+./skins/SWDark4/skin.tcl:	add_de1_variable "espresso espresso_zoomed" $column1_pos [expr {$pos_top + (1 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_preinfusion_timer][translate "s"] [translate {preinfusion}]} 
+./skins/SWDark4/skin.tcl:	add_de1_variable "espresso espresso_zoomed" $column1_pos [expr {$pos_top + (2 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_pour_timer][translate "s"] [translate {pouring}]} 
+./skins/SWDark4/skin.tcl:		add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (5 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $lighter -width [rescale_x_skin 520] -textvariable {[preinfusion_volume][translate " preinfusion"]} 
+./skins/SWDark4/skin.tcl:		add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (6 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $lighter -width [rescale_x_skin 520] -textvariable {[pour_volume][translate " pouring"]}
+./skins/SWDark4/skin.tcl:		add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (5.5 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $lighter -width [rescale_x_skin 520] -textvariable {[preinfusion_volume][translate " preinfusion"]} 
+./skins/SWDark4/skin.tcl:		add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (6.6 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $lighter -width [rescale_x_skin 520] -textvariable {[pour_volume][translate " pouring"]}
+./skins/SWDark4/skin.tcl:		add_de1_variable "espresso espresso_zoomed espresso_zoomed_temperature" $column3_pos [expr {$pos_top + (1 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $lighter -width [rescale_x_skin 520] -textvariable {[preinfusion_volume][translate " preinfusion"]} 
+./skins/SWDark4/skin.tcl:		add_de1_variable "espresso espresso_zoomed espresso_zoomed_temperature" $column3_pos [expr {$pos_top + (2 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $lighter -width [rescale_x_skin 520] -textvariable {[pour_volume][translate " pouring"]}
+./skins/SWDark4/swdark_functions.tcl:				# don't track flow rate delta during preinfusion because the puck is absorbing water, and so the numbers aren't useful (likely just pump variability)
+./skins/SWDark4/swdark_functions.tcl:				# don't track flow rate delta during preinfusion because the puck is absorbing water, and so the numbers aren't useful (likely just pump variability)
+./skins/SWDark4/swdark_functions.tcl:			 		# for FLOW and PRESSURE shots, we normally use preinfusion, so POUR VOLUME is very close to WEIGHT
+./skins/Teal Modern/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/Three Women/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/default/de1_skin_settings.tcl:	# pressure profile preinfusion
+./skins/default/de1_skin_settings.tcl:	# flow profile preinfusion
+./skins/default/de1_skin_settings.tcl:# (beta) weight based shot ending, only displayed if a skale is connected
+./skins/default/de1_skin_settings.tcl:	# 1/18/19 support for weight-bsaed ending of advanced shots
+./skins/default/de1_skin_settings.tcl:		add_de1_text "firmware_update_4" 40 1400 -text [translate "Your DE1 firmware is now ready to be applied"] -font Helv_10 -width 1200 -fill "#444444" -anchor "nw" -justify "left" 
+./skins/default/de1_skin_settings.tcl:# not yet ready to be used, still needs some work
+./skins/default/de1_skin_settings.tcl:	add_de1_text "travel_do" 1520 1000 -text [translate "You can turn your machine off once it is out of water. It will then be ready for transport."] -font Helv_10_bold -fill "#a77171" -anchor "nw" -width 500
+./skins/default/de1_skin_settings.tcl:	#add_de1_text "travel_do" 1280 1520 -text [translate "It will then be ready for transport."] -font Helv_10_bold -fill "#000000" -anchor "center" -width 1000
+./skins/default/de1_skin_settings.tcl:	#add_de1_text "travel_do" 1520 1000 -text [translate "You can turn your machine off once it is out of water. It will then be ready for transport."] -font Helv_10_bold -fill "#000000" -anchor "nw" -width 500
+./skins/default/de1_skin_settings.tcl:	#add_de1_text "travel_do" 1280 1520 -text [translate "It will then be ready for transport."] -font Helv_10_bold -fill "#000000" -anchor "center" -width 1000
+./skins/default/skin.tcl:# during espresso we show the current state of things (heating, waiting, flushing, etc)
+./skins/default/skin.tcl:# show whether the espresso machine is ready to make an espresso, or heating, or the tablet is disconnected
+./skins/default/standard_includes.tcl:add_de1_page "tankempty refill" "fill_tank.jpg" "default"
+./skins/default/standard_includes.tcl:#add_de1_text "tankempty refill" 1280 750 -text [translate "Please add water"] -font Helv_20_bold -fill "#AAAAAA" -justify "center" -anchor "center" -width 900
+./skins/default/standard_includes.tcl:add_de1_button "tankempty refill" {say [translate {awake}] $::settings(sound_button_in);start_refill_kit} 0 0 2560 1400 
+./skins/default/standard_includes.tcl:	add_de1_text "tankempty refill" 1280 750 -text [translate "Please add water"] -font Helv_20_bold -fill "#CCCCCC" -justify "center" -anchor "center" -width 900
+./skins/default/standard_includes.tcl:	add_de1_variable "tankempty refill" 1280 900 -justify center -anchor "center" -text "" -font Helv_10 -fill "#CCCCCC" -width 520 -textvariable {[refill_kit_retry_button]} 
+./skins/default/standard_includes.tcl:	add_de1_button "tankempty refill" {say [translate {awake}] $::settings(sound_button_in);start_refill_kit} 1760 1402 2560 1600
+./skins/default/standard_stop_buttons.tcl:add_de1_button "tankempty refill" {say [translate {awake}] $::settings(sound_button_in);start_refill_kit} 0 0 2560 1400 
+./skins/default/standard_stop_buttons.tcl:	add_de1_text "tankempty refill" 1280 750 -text [translate "Please add water"] -font Helv_20_bold -fill "#CCCCCC" -justify "center" -anchor "center" -width 900
+./skins/default/standard_stop_buttons.tcl:	add_de1_variable "tankempty refill" 1280 900 -justify center -anchor "center" -text "" -font Helv_10 -fill "#CCCCCC" -width 520 -textvariable {[refill_kit_retry_button]} 
+./skins/default/standard_stop_buttons.tcl:	add_de1_button "tankempty refill" {say [translate {awake}] $::settings(sound_button_in);start_refill_kit} 1760 1402 2560 1600
+./skinsplus/default/2560x1600/skin.tcl:add_de1_button "settings_1a" {say [translate {preinfusion time-out}] $::settings(sound_button_in);vertical_slider ::settings(preinfusion_stop_timeout) 0 120 %x %y %x0 %y0 %x1 %y1} 1571 320 1870 830 "mousemove"
+./vars.tcl:		return [translate {(heating)}]
+./vars.tcl:		return [subst {[translate "s"][espresso_preinfusion_timer] [translate {preinfusion}] }]
+./vars.tcl:	return [subst {[espresso_preinfusion_timer][translate "s"] [translate {preinfusion}]}]
+./vars.tcl:			return "[translate {s}][espresso_pour_timer] [translate {pouring}] < [return_liquid_measurement [round_to_integer $::settings(final_desired_shot_volume)]]"
+./vars.tcl:			return "[translate {s}][espresso_pour_timer] [translate {pouring}]"
+./vars.tcl:		return "[espresso_pour_timer][translate {s}] [translate {pouring}] < [return_liquid_measurement [round_to_integer $::settings(final_desired_shot_volume)]]"
+./vars.tcl:		return "[espresso_pour_timer][translate {s}] [translate {pouring}]"
+./vars.tcl:			return "[translate {s}][espresso_pour_timer] [translate {pouring}] < [return_liquid_measurement [round_to_integer $::settings(final_desired_shot_volume)]]"
+./vars.tcl:			return "[translate {pouring}] [translate {s}][espresso_pour_timer]"
+./vars.tcl:		return "[espresso_pour_timer][translate {s}] [translate {pouring}] < [return_liquid_measurement [round_to_integer $::settings(final_desired_shot_volume)]]"
+./vars.tcl:		return "[espresso_pour_timer][translate {s}] [translate {pouring}]"
+./vars.tcl:	# we sum these two numbers so that we don't have a rounding error that a user might find offensive (ie, "preinfusion + pour = total" ALWAYS) 
+./vars.tcl:				# no weight increase for 5s due to preinfusion
+./vars.tcl:			# no weight increase for 5s due to preinfusion
+./vars.tcl:	set preinfusion [list \
+./vars.tcl:		name [translate {preinfusion}] \
+./vars.tcl:		name [translate {preinfusion}] \
+./vars.tcl:		set ::settings(advanced_shot) [list $preinfusion $preinfusion2 $hold $decline]
+./vars.tcl:	set preinfusion [list \
+./vars.tcl:		name [translate {preinfusion}] \
+./vars.tcl:		name [translate {preinfusion}] \
+./vars.tcl:		set ::settings(advanced_shot) [list $preinfusion $preinfusion2 $hold $decline]
+./vars.tcl:		set ::settings(advanced_shot) [list $preinfusion $hold $decline]
+./vars.tcl:		# if step temps are enabled then set the preinfusion start temp to the global temp 

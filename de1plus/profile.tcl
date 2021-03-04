@@ -26,7 +26,7 @@ namespace eval ::profile {
         }
 
         set preinfusion [list \
-            name [translate "preinfusion"] \
+            name [translate {preinfusion}] \
             temperature $::settings(espresso_temperature) \
             sensor "coffee" \
             pump "flow" \
@@ -44,7 +44,7 @@ namespace eval ::profile {
         ]
 
         set preinfusion2 [list \
-            name [translate "preinfusion"] \
+            name [translate {preinfusion}] \
             temperature $::settings(espresso_temperature_1) \
             sensor "coffee" \
             pump "flow" \
@@ -132,7 +132,7 @@ namespace eval ::profile {
         }
 
         set preinfusion [list \
-            name [translate "preinfusion"] \
+            name [translate {preinfusion}] \
             temperature $::settings(espresso_temperature) \
             sensor "coffee" \
             pump "flow" \
@@ -154,7 +154,7 @@ namespace eval ::profile {
         }
 
         set preinfusion2 [list \
-            name [translate "preinfusion"] \
+            name [translate {preinfusion}] \
             temperature $::settings(espresso_temperature_1) \
             sensor "coffee" \
             pump "flow" \

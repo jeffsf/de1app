@@ -1158,9 +1158,9 @@ proc update_onscreen_variables { {state {}} } {
 			set ::state_change_chart_value [expr {$::state_change_chart_value * -1}]
 			
 			if {[expr {rand()}] > 0.5} {
-				set ::settings(current_frame_description) [translate "pouring"]
+				set ::settings(current_frame_description) [translate {pouring}]
 			} else {
-				set ::settings(current_frame_description) [translate "preinfusion"]
+				set ::settings(current_frame_description) [translate {preinfusion}]
 			}
 		}
 

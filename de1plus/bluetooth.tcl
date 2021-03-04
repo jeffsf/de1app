@@ -137,7 +137,7 @@ proc handle_new_weight_from_scale { sensorweight scale_refresh_rate } {
 	set diff [expr {abs($::de1(scale_weight) - $sensorweight)}]
 
 	#if {$::de1_num_state($::de1(state)) == "Idle"} 
-	if {$::de1_num_state($::de1(state)) == "Espresso" && ($::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)) } {
+	if {$::de1_num_state($::de1(state)) == "Espresso" && ($::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)) } {
 
 		set diff_rel [expr {($::de1(scale_weight) - $sensorweight)}]
 		if {$diff_rel > 1.0} {
@@ -194,7 +194,7 @@ proc handle_new_weight_from_scale { sensorweight scale_refresh_rate } {
 
 
 	# (beta) stop shot-at-weight feature
-	if {$::de1_num_state($::de1(state)) == "Espresso" && ($::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion) || $::de1(substate) == $::de1_substate_types_reversed(ending)) } {
+	if {$::de1_num_state($::de1(state)) == "Espresso" && ($::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse) || $::de1(substate) == $::de1_substate_types_reversed(Flush)) } {
 		
 		if {$::de1(scale_sensor_weight) > $::de1(final_water_weight)} {
 			set ::de1(final_water_weight) $thisweight
@@ -237,12 +237,12 @@ proc handle_new_weight_from_scale { sensorweight scale_refresh_rate } {
 					}
 			}
 		}
-	} elseif { ( $::de1_num_state($::de1(state)) == "Espresso" || $::de1_num_state($::de1(state)) == "HotWater" ) && ( $::de1(substate) == $::de1_substate_types_reversed(heating) || $::de1(substate) == $::de1_substate_types_reversed(stabilising) || $::de1(substate) == $::de1_substate_types_reversed(final heating) )} {
+	} elseif { ( $::de1_num_state($::de1(state)) == "Espresso" || $::de1_num_state($::de1(state)) == "HotWater" ) && ( $::de1(substate) == $::de1_substate_types_reversed(HeatWaterTank) || $::de1(substate) == $::de1_substate_types_reversed(StabilizeMixTemp) || $::de1(substate) == $::de1_substate_types_reversed(HeatWaterHeater) )} {
 		if {$::de1(scale_weight) > 10} {
 			# if a cup was added during the warmup stage, about to make an espresso, then tare automatically
 			scale_tare
 		}
-	} elseif { $::de1_num_state($::de1(state)) == "HotWater" && ($::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion) || $::de1(substate) == $::de1_substate_types_reversed(ending)) } {
+	} elseif { $::de1_num_state($::de1(state)) == "HotWater" && ($::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse) || $::de1(substate) == $::de1_substate_types_reversed(Flush)) } {
 		# "hot water: stop on weight" feature. Works with the scale, so it's more accurate.
 		# lets assume clean, filtered delicious water actually has a density of 1
 

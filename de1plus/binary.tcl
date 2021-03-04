@@ -1362,7 +1362,7 @@ proc update_de1_shotvalue {packed} {
 			set framedesc "-"
 		}
 
-		if {$::de1(substate) == $::de1_substate_types_reversed(preinfusion) || $::de1(substate) == $::de1_substate_types_reversed(pouring)} {
+		if {$::de1(substate) == $::de1_substate_types_reversed(PreInfuse) || $::de1(substate) == $::de1_substate_types_reversed(Pour)} {
 			set ::settings(current_frame_description) $framedesc
 			display_popup_android_message_if_necessary $framedesc
 		} else {
@@ -1374,11 +1374,11 @@ proc update_de1_shotvalue {packed} {
 
 	set ::previous_FrameNumber [ifexists ShotSample(FrameNumber)]
 
-	if {$::de1(substate) == $::de1_substate_types_reversed(ending) } {
-		set ::settings(current_frame_description) [translate "ending"]
+	if {$::de1(substate) == $::de1_substate_types_reversed(Flush) } {
+		set ::settings(current_frame_description) [translate {ending}]
 		set ::previous_FrameNumber -1
-	} elseif {$::de1(substate) == $::de1_substate_types_reversed(heating) || $::de1(substate) == $::de1_substate_types_reversed(stabilising) || $::de1(substate) == $::de1_substate_types_reversed(final heating)} {
-		set ::settings(current_frame_description) [translate "heating"]
+	} elseif {$::de1(substate) == $::de1_substate_types_reversed(HeatWaterTank) || $::de1(substate) == $::de1_substate_types_reversed(StabilizeMixTemp) || $::de1(substate) == $::de1_substate_types_reversed(HeatWaterHeater)} {
+		set ::settings(current_frame_description) [translate {heating}]
 		set ::previous_FrameNumber -1
 	}
 
@@ -1417,9 +1417,9 @@ proc update_de1_shotvalue {packed} {
 
 	# keep track of water volume during espresso, but not steam
 	if {$::de1_num_state($::de1(state)) == "Espresso"} {
-		if {$::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {	
+		if {$::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {	
 			set ::de1(preinfusion_volume) [expr {$::de1(preinfusion_volume) + $water_volume_dispensed_since_last_update}]
-		} elseif {$::de1(substate) == $::de1_substate_types_reversed(pouring) } {	
+		} elseif {$::de1(substate) == $::de1_substate_types_reversed(Pour) } {	
 			set ::de1(pour_volume) [expr {$::de1(pour_volume) + $water_volume_dispensed_since_last_update}]
 		}
 	}
@@ -1463,7 +1463,7 @@ set previous_espresso_flow_time [espresso_millitimer]
 proc append_live_data_to_espresso_chart {} {
 
     if {$::de1_num_state($::de1(state)) == "Steam"} {
-		if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {
+		if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {
 		#puts "append_live_data_to_espresso_chart $::de1(pressure)"
 			steam_pressure append [round_to_two_digits $::de1(pressure)]
 			steam_flow append [round_to_two_digits $::de1(flow)]
@@ -1496,7 +1496,7 @@ proc append_live_data_to_espresso_chart {} {
 #@	global previous_de1_substate
 	#global state_change_chart_value
 
-  	if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {
+  	if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {
 		# to keep the espresso charts going
 		#if {[millitimer] < 500} { 
 		  # need to make sure we don't append data from an earlier time, as that destroys the chart
@@ -1573,7 +1573,7 @@ proc append_live_data_to_espresso_chart {} {
 			set negative_flow_delta_for_chart 0
 
 
-			if {$::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {				
+			if {$::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {				
 				# don't track flow rate delta during preinfusion because the puck is absorbing water, and so the numbers aren't useful (likely just pump variability)
 				set flow_delta 0
 			}

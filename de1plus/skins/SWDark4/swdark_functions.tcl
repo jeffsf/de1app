@@ -241,7 +241,7 @@ proc swdark_setyaxis {} {
 
 proc append_live_data_to_espresso_chart_sw {} {
     if {$::de1_num_state($::de1(state)) == "Steam"} {
-		if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {
+		if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {
 		#puts "append_live_data_to_espresso_chart $::de1(pressure)"
 			steam_pressure append [round_to_two_digits $::de1(pressure)]
 			steam_flow append [round_to_two_digits $::de1(flow)]
@@ -259,7 +259,7 @@ proc append_live_data_to_espresso_chart_sw {} {
 #@	global previous_de1_substate
 	#global state_change_chart_value
 
-  	if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {
+  	if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {
 		# to keep the espresso charts going
 		#if {[millitimer] < 500} { 
 		  # need to make sure we don't append data from an earlier time, as that destroys the chart
@@ -320,7 +320,7 @@ proc append_live_data_to_espresso_chart_sw {} {
 			set negative_flow_delta_for_chart 0
 
 
-			if {$::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {				
+			if {$::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {				
 				# don't track flow rate delta during preinfusion because the puck is absorbing water, and so the numbers aren't useful (likely just pump variability)
 				set flow_delta 0
 			}
@@ -391,7 +391,7 @@ proc DSx_next_step {} {
 proc append_live_data_to_espresso_chart_restesting {} {
 
     if {$::de1_num_state($::de1(state)) == "Steam"} {
-		if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {
+		if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {
 		#puts "append_live_data_to_espresso_chart $::de1(pressure)"
 			steam_pressure append [round_to_two_digits $::de1(pressure)]
 			steam_flow append [round_to_two_digits $::de1(flow)]
@@ -424,7 +424,7 @@ proc append_live_data_to_espresso_chart_restesting {} {
 #@	global previous_de1_substate
 	#global state_change_chart_value
 
-  	if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {
+  	if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {
 		# to keep the espresso charts going
 		#if {[millitimer] < 500} { 
 		  # need to make sure we don't append data from an earlier time, as that destroys the chart
@@ -504,7 +504,7 @@ proc append_live_data_to_espresso_chart_restesting {} {
 			set negative_flow_delta_for_chart 0
 
 
-			if {$::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {				
+			if {$::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {				
 				# don't track flow rate delta during preinfusion because the puck is absorbing water, and so the numbers aren't useful (likely just pump variability)
 				set flow_delta 0
 			}

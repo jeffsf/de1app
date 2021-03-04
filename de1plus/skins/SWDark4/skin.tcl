@@ -861,7 +861,7 @@ add_de1_button "off_zoomed_temperature espresso_zoomed_temperature espresso_3_zo
 
 #proc steamtemp {} {
 #    if {$::de1_num_state($::de1(state)) == "Steam"} {
-#			if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {
+#			if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {
 #				steam_temperature [expr {$::de1(steam_heater_temperature)/100.0}]
 #			}
 #		return
@@ -996,15 +996,15 @@ if {$::settings(waterlevel_indicator_on) == 1} {
 
 
 add_de1_text "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (0 * $spacer)}] -justify right -anchor "nw" -text [translate "Espresso"] -font Helv_7_bold -fill $::detailtextheadingcol -width [rescale_x_skin 520]
-	add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (1 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_preinfusion_timer][translate "s"] [translate "preinfusion"]} 
-	add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (2 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_pour_timer][translate "s"] [translate "pouring"]} 
+	add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (1 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_preinfusion_timer][translate "s"] [translate {preinfusion}]} 
+	add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (2 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_pour_timer][translate "s"] [translate {pouring}]} 
 	add_de1_variable "off off_zoomed espresso_3 espresso_3_zoomed off_zoomed_temperature espresso_zoomed_temperature espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (3 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7 -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_elapsed_timer][translate "s"] [translate "total"]} 
 	#add_de1_variable "espresso_3 espresso_3_zoomed espresso_3_zoomed_temperature" $column1_pos [expr {$pos_top + (4 * $spacer)}] -justify left -anchor "nw" -font Helv_7 -text "" -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[if {[espresso_done_timer] < $::settings(seconds_to_display_done_espresso)} {return "[espresso_done_timer][translate s] [translate done]"} else { return ""}]} 
 	
 	
 add_de1_text "espresso espresso_zoomed" $column1_pos [expr {$pos_top + (0 * $spacer)}] -justify right -anchor "nw" -text [translate "Time"] -font Helv_7_bold -fill $::detailtextheadingcol -width [rescale_x_skin 520]
-	add_de1_variable "espresso espresso_zoomed" $column1_pos [expr {$pos_top + (1 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_preinfusion_timer][translate "s"] [translate "preinfusion"]} 
-	add_de1_variable "espresso espresso_zoomed" $column1_pos [expr {$pos_top + (2 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_pour_timer][translate "s"] [translate "pouring"]} 
+	add_de1_variable "espresso espresso_zoomed" $column1_pos [expr {$pos_top + (1 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_preinfusion_timer][translate "s"] [translate {preinfusion}]} 
+	add_de1_variable "espresso espresso_zoomed" $column1_pos [expr {$pos_top + (2 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7  -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_pour_timer][translate "s"] [translate {pouring}]} 
 	add_de1_variable "espresso espresso_zoomed" $column1_pos [expr {$pos_top + (3 * $spacer)}] -justify left -anchor "nw" -text "" -font Helv_7 -fill $::detailtextcol -width [rescale_x_skin 520] -textvariable {[espresso_elapsed_timer][translate "s"] [translate "total"]} 
 
 

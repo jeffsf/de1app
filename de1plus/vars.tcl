@@ -562,17 +562,17 @@ proc flush_done_timer {} {
 proc steam_timer {} {
 zz1
 	return [pour_timer]
-	#return [event_timer_calculate "Steam" "pouring" {"stabilising" "final heating"} ]
+	#return [event_timer_calculate "Steam" "Pour" {"StabilizeMixTemp" "HeatWaterHeater"} ]
 }
 
 proc water_timer {} {
 zz2
 	return [pour_timer]
-	#return [event_timer_calculate "HotWater" "pouring" {"stabilising" "final heating"} ]
+	#return [event_timer_calculate "HotWater" "Pour" {"StabilizeMixTemp" "HeatWaterHeater"} ]
 }
 
 proc waterflow {} {
-	if {$::de1(substate) != $::de1_substate_types_reversed(pouring) && $::de1(substate) != $::de1_substate_types_reversed(preinfusion)} {	
+	if {$::de1(substate) != $::de1_substate_types_reversed(Pour) && $::de1(substate) != $::de1_substate_types_reversed(PreInfuse)} {	
 		return 0
 	}
 
@@ -608,7 +608,7 @@ proc waterflow {} {
 set start_timer [clock seconds]
 set start_millitimer [clock milliseconds]
 proc watervolume {} {
-	if {$::de1(substate) != $::de1_substate_types_reversed(pouring) && $::de1(substate) != $::de1_substate_types_reversed(preinfusion)} {	
+	if {$::de1(substate) != $::de1_substate_types_reversed(Pour) && $::de1(substate) != $::de1_substate_types_reversed(PreInfuse)} {	
 		return 0
 	}
 
@@ -654,7 +654,7 @@ proc watertemp {} {
 }
 
 proc pressure {} {
-	if {$::de1(substate) != $::de1_substate_types_reversed(pouring) && $::de1(substate) != $::de1_substate_types_reversed(preinfusion)} {	
+	if {$::de1(substate) != $::de1_substate_types_reversed(Pour) && $::de1(substate) != $::de1_substate_types_reversed(PreInfuse)} {	
 		return 0
 	}
 
@@ -749,7 +749,7 @@ proc steam_heater_temperature {} {
 }
 proc water_mix_temperature {} {
 	if {$::android == 0} {
-		if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {	
+		if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {	
 			if {$::de1(mix_temperature) == "" || $::de1(mix_temperature) < 85 || $::de1(mix_temperature) > 99} {
 				set ::de1(mix_temperature) 94
 			}
@@ -795,7 +795,7 @@ proc group_head_heater_action_text {} {
 proc group_head_heating_text {} {
 	set delta [expr {int([group_head_heater_temperature] - [setting_espresso_temperature])}]
 	if {$delta < -5} {
-		return [translate "(heating)"]
+		return [translate {(heating)}]
 	}
 }
 
@@ -965,10 +965,10 @@ proc return_shot_weight_measurement {in} {
 
 proc preinfusion_pour_timer_text {} {
     if {$::de1(language_rtl) == 1} {
-		return [subst {[translate "s"][espresso_preinfusion_timer] [translate "preinfusion"] }]
+		return [subst {[translate "s"][espresso_preinfusion_timer] [translate {preinfusion}] }]
 	}
 
-	return [subst {[espresso_preinfusion_timer][translate "s"] [translate "preinfusion"]}]
+	return [subst {[espresso_preinfusion_timer][translate "s"] [translate {preinfusion}]}]
 }
 
 proc total_pour_timer_text {} {
@@ -1052,7 +1052,7 @@ proc waterflow_text {} {
 
 proc watervolume_text {} {
 	if {$::android == 0} {
-		if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {	
+		if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {	
 			if {$::de1(volume) == ""} {
 				set ::de1(volume) 0
 			}
@@ -1066,7 +1066,7 @@ proc watervolume_text {} {
 
 proc waterweightflow_text {} {
 	if {$::android == 0} {
-		if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {	
+		if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {	
 			if {[espresso_millitimer] > 5000} {	
 				# no weight increase for 5s due to preinfusion
 				if {$::de1(scale_weight_rate) == ""} {
@@ -1120,7 +1120,7 @@ proc waterweight_text {} {
 			set ::de1(scale_weight) 0
 		} else {
 
-			if {$::de1(substate) == $::de1_substate_types_reversed(pouring) || $::de1(substate) == $::de1_substate_types_reversed(preinfusion)} {	
+			if {$::de1(substate) == $::de1_substate_types_reversed(Pour) || $::de1(substate) == $::de1_substate_types_reversed(PreInfuse)} {	
 				if {$::de1(scale_weight) == ""} {
 					set ::de1(scale_weight) 3
 				}
@@ -2034,7 +2034,7 @@ proc copy_pressure_profile_to_advanced_profile {} {
 
 	msg "copy_pressure_profile_to_advanced_profile"
 	set preinfusion [list \
-		name [translate "preinfusion"] \
+		name [translate {preinfusion}] \
 		temperature $::settings(espresso_temperature) \
 		sensor "coffee" \
 		pump "flow" \
@@ -2052,7 +2052,7 @@ proc copy_pressure_profile_to_advanced_profile {} {
 	]
 
 	set preinfusion2 [list \
-		name [translate "preinfusion"] \
+		name [translate {preinfusion}] \
 		temperature $::settings(espresso_temperature_1) \
 		sensor "coffee" \
 		pump "flow" \
@@ -2134,7 +2134,7 @@ proc copy_flow_profile_to_advanced_profile {} {
 
 	puts "copy_flow_profile_to_advanced_profile"
 	set preinfusion [list \
-		name [translate "preinfusion"] \
+		name [translate {preinfusion}] \
 		temperature $::settings(espresso_temperature) \
 		sensor "coffee" \
 		pump "flow" \
@@ -2152,7 +2152,7 @@ proc copy_flow_profile_to_advanced_profile {} {
 	]
 
 	set preinfusion2 [list \
-		name [translate "preinfusion"] \
+		name [translate {preinfusion}] \
 		temperature $::settings(espresso_temperature_1) \
 		sensor "coffee" \
 		pump "flow" \
@@ -3194,7 +3194,7 @@ proc ghc_required {} {
 proc start_text_if_espresso_ready {} {
 	set num $::de1(substate)
 	set substate_txt $::de1_substate_types($num)
-	if {$substate_txt == "ready" && $::de1(device_handle) != 0} {
+	if {$substate_txt == "NoState" && $::de1(device_handle) != 0} {
 		
 		if {[ghc_required]} {
 			# display READY instead of START, because they have to tap the group head to start, they cannot tap the tablet, due to UL compliance limits
@@ -3208,7 +3208,7 @@ proc start_text_if_espresso_ready {} {
 proc restart_text_if_espresso_ready {} {
 	set num $::de1(substate)
 	set substate_txt $::de1_substate_types($num)
-	if {$substate_txt == "ready" && $::de1(device_handle) != 0} {
+	if {$substate_txt == "NoState" && $::de1(device_handle) != 0} {
 		if {[ghc_required]} {
 			# display READY instead of START, because they have to tap the group head to start, they cannot tap the tablet, due to UL compliance limits
 			return [translate "READY"]
@@ -3222,7 +3222,7 @@ proc restart_text_if_espresso_ready {} {
 proc stop_text_if_espresso_stoppable {} {
 	set num $::de1(substate)
 	set substate_txt $::de1_substate_types($num)
-	if {$substate_txt != "ending"} {
+	if {$substate_txt != "Flush"} {
 		return [translate "STOP"]
 	}
 	return [translate "WAIT"]
@@ -3234,7 +3234,7 @@ proc stop_text_if_espresso_stoppable {} {
 proc espresso_history_save_from_gui {} {
 	set num $::de1(substate)
 	set substate_txt $::de1_substate_types($num)
-	if {$substate_txt != "ready"} {
+	if {$substate_txt != "NoState"} {
 		set state [translate "WAIT"]
 	} else {
 #		if {$::settings(history_saved) != 1} { 

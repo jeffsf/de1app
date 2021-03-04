@@ -505,14 +505,14 @@ array set ::de1_num_state_reversed [reverse_array ::de1_num_state]
 
 array set ::de1_substate_types {
 	-   "starting"
-	0	"ready"
-	1	"heating"
-	2	"final heating"
-	3	"stabilising"
-	4	"preinfusion"
-	5	"pouring"
-	6	"ending"
-	17  "refill"
+	0	"NoState"
+	1	"HeatWaterTank"
+	2	"HeatWaterHeater"
+	3	"StabilizeMixTemp"
+	4	"PreInfuse"
+	5	"Pour"
+	6	"Flush"
+	17  "PausedRefill"
 }
 array set ::de1_substate_types_reversed [reverse_array ::de1_substate_types]
 
@@ -543,7 +543,7 @@ proc start_refill_kit {} {
 		#after 1000 [list update_de1_state "$::de1_state(Idle)\x5"]
 		after 2000 start_idle
 	} else {
-		de1_send_state "refill" $::de1_state(Refill)
+		de1_send_state "PausedRefill" $::de1_state(Refill)
 	}
 
 	if {[ifexists ::sleep_after_refill] == 1} {

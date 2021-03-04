@@ -1,0 +1,33 @@
+s/"ready"/"NoState"/g
+s/"heating"/"HeatWaterTank"/g
+s/"final heating"/"HeatWaterHeater"/g
+s/"stabilising"/"StabilizeMixTemp"/g
+s/"preinfusion"/"PreInfuse"/g
+s/"pouring"/"Pour"/g
+s/"ending"/"Flush"/g
+s/"refill"/"PausedRefill"/g
+s/{ready}/"NoState"/g
+s/{heating}/"HeatWaterTank"/g
+s/{final heating}/"HeatWaterHeater"/g
+s/{stabilising}/"StabilizeMixTemp"/g
+s/{preinfusion}/"PreInfuse"/g
+s/{pouring}/"Pour"/g
+s/{ending}/"Flush"/g
+s/{refill}/"PausedRefill"/g
+s/(ready)/(NoState)/g
+s/(heating)/(HeatWaterTank)/g
+s/(final heating)/(HeatWaterHeater)/g
+s/(stabilising)/(StabilizeMixTemp)/g
+s/(preinfusion)/(PreInfuse)/g
+s/(pouring)/(Pour)/g
+s/(ending)/(Flush)/g
+s/(refill)/(PausedRefill)/g
+s/\[translate "NoState"]/[translate {ready}]/g
+s/\[translate "HeatWaterTank"]/[translate {heating}]/g
+s/\[translate "HeatWaterHeater"]/[translate {final heating}]/g
+s/\[translate "StabilizeMixTemp"]/[translate {stabilizing}]/g
+s/\[translate "PreInfuse"]/[translate {preinfusion}]/g
+s/\[translate "Pour"]/[translate {pouring}]/g
+s/\[translate "Flush"]/[translate {ending}]/g
+s/\[translate "PausedRefill"]/[translate {refill}]/g
+s/\[translate "(HeatWaterTank)"]/[translate {(heating)}]/g
